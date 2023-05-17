@@ -1,0 +1,4 @@
+carvi-cnn-model/1/variables/variables.data-00000-of-00001 filter=lfs diff=lfs merge=lfs -text
+/Users/juansebastianvargastorres/DL_Project/CarVi/carvi-cnn-model/1/variables/variables.data-00000-of-00001 filter=lfs diff=lfs merge=lfs -text
+/Users/juansebastianvargastorres/DL_Project/CarVi/carvi-cnn-model filter=lfs diff=lfs merge=lfs -text
+*.data filter=lfs diff=lfs merge=lfs -text

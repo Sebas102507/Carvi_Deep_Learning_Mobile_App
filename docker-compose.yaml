@@ -1,0 +1,33 @@
+version: "3"
+   
+services:
+    django-model-service:
+        build:
+            context: ./carvi_image_prediction
+            dockerfile: dockerfile
+        container_name: carvi-image-prediction
+        command: python manage.py runserver 0.0.0.0:9004
+        ports:
+            - "9004:9004"
+        environment:
+            - DEBUG=1
+        networks:
+            - carviNet 
+
+    tensorflow-serving:
+        image: tensorflow/serving
+        ports:
+            - "8501:8501"
+
+        volumes:
+            - ./carvi-cnn-model:/models/carvi-cnn-model
+            - ./carvi-cnn-model/models.config.a:/models/carvi-cnn-model/models.config.a
+        environment:
+            - MODEL_NAME=carvi-cnn-model
+
+        command:
+            - '--model_config_file=/models/carvi-cnn-model/models.config.a'           
+
+networks:
+  carviNet:
+    driver: bridge  
