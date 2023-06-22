@@ -1,0 +1,47 @@
+version: "3"
+   
+services:
+    carvi-image-prediction-service:
+        build:
+            context: ./carvi_image_prediction
+            dockerfile: dockerfile
+        container_name: carvi-image-prediction-service
+        command: python manage.py runserver 0.0.0.0:9010
+        ports:
+            - "9010:9010"
+        environment:
+            - DEBUG=1
+        networks:
+            - carviNet
+
+
+    sam-service:
+        build:
+            context: ./sam_service
+            dockerfile: dockerfile
+        container_name: sam-service
+        command: python manage.py runserver 0.0.0.0:9011
+        ports:
+            - "9011:9011"
+        environment:
+            - DEBUG=1
+        networks:
+            - carviNet     
+
+    query-service:
+        build:
+            context: ./query_service
+            dockerfile: dockerfile
+        container_name: query-service
+        command: python manage.py runserver 0.0.0.0:9012
+        ports:
+            - "9012:9012"
+        environment:
+            - DEBUG=1
+        networks:
+            - carviNet            
+
+    
+networks:
+  carviNet:
+    driver: bridge  
