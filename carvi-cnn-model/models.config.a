@@ -1,8 +1,0 @@
-model_config_list {
- config {
-    name: 'carvi-cnn-model'
-    base_path: '/models/carvi-cnn-model/'
-    model_platform: 'tensorflow'
-    model_version_policy: {all: {}}
-        }
-}
